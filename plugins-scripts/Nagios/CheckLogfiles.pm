@@ -3077,8 +3077,7 @@ sub scan {
       if (! $logfile->{seekable}) { $logfile->{offset} += length($line) }
       if ($self->{options}->{encoding}) {
         # i am sure this is completely unreliable
-        $line = Encode::encode("ascii", 
-            Encode::decode($self->{options}->{encoding}, $line));
+        $line = Encode::decode($self->{options}->{encoding}, $line);
         # the input stream is somewhat binary, so chomp doesn't know
         # it neads to remove \r\n on windows.
         $line =~ s/$1/\n/g if $line =~ /(\r\n?|\n\r?)/;
